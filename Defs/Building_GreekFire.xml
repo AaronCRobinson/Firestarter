@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefs>
+
+  <ThingDef>
+    <defName>GreekFire</defName>
+    <label>greekfire</label>
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+    <graphicData>
+      <texPath>Terrain/Surfaces/Marsh</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <altitudeLayer>Floor</altitudeLayer>
+    <pathCost>0</pathCost>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+      <Beauty>-1</Beauty>
+      <WorkToBuild>70</WorkToBuild>
+      <Flammability>5</Flammability>
+    </statBases>
+    <building>
+	  <!--ai_combatDangerous maybe...-->
+	  <isInert>true</isInert>
+	  <expandHomeArea>false</expandHomeArea>
+      <repairable>false</repairable>
+    </building>
+    <description>Flammable oil.</description>
+    <placingDraggableDimensions>2</placingDraggableDimensions>
+    <costList>
+      <Chemfuel>1</Chemfuel>
+    </costList>
+    <rotatable>false</rotatable>
+    <neverMultiSelect>false</neverMultiSelect>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <constructEffect>ConstructLiquid</constructEffect>
+  </ThingDef>
+
+</ThingDefs>

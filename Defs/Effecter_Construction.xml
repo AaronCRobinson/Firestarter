@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <EffecterDef>
+    <defName>ConstructLiquid</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
+        <moteDef>Mote_WaterSplash</moteDef>
+        <ChancePerTick>0.035</ChancePerTick>
+        <scale>
+          <min>0.9</min>
+          <max>1.2</max>
+        </scale>
+        <rotationRate>
+          <min>-60</min>
+          <max>60</max>
+        </rotationRate>
+        <speed>
+          <min>0.6</min>
+          <max>1.8</max>
+        </speed>
+      </li>
+    </children>
+  </EffecterDef>
+</Defs>
