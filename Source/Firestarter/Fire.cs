@@ -111,7 +111,7 @@ namespace Firestarter
         public static float ChanceUsingFlammabilityMax(IntVec3 c, Map map, ref float flammabilityMax)
         {
             List<Thing> thingList = c.GetThingList(map);
-            Log.ErrorOnce("UseFlammabilityMaxChance fired. bang bang bang", 123357);
+            //Log.ErrorOnce("UseFlammabilityMaxChance fired. bang bang bang", 123357);
             for (int i = 0; i < thingList.Count; i++)
             {
                 if (thingList[i] is Fire)

@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fire.cs" />
+    <Compile Include="FireArrow.cs" />
     <Compile Include="FirestarterAbilityUser.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

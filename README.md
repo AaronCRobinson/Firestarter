@@ -10,7 +10,8 @@ I'm a firestarter, twisted firestarter. You're a firestarter, twisted firestarte
 - `Greek fire` buildable floor material. Requires 1 chem fuel. When lit burns extremely hot and is not extinguished by rain.
 - `Firestarter` ability. Pawns can start fires when drafted.
 - Configuration settings for `Firestarter` ability, limiting it to Pyromaniacs or even disabling it.
-- Changes to fire logic to make these mechanics work better. 
+- Changes to fire logic to make these mechanics work better.
+- Arrows shot beside campfires or torches will become flaming and start fires where they land.  
 
 # Requirements
 
