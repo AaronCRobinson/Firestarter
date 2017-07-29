@@ -15,25 +15,36 @@ namespace Firestarter
 
     // reference: https://github.com/roxxploxx/RimWorldModGuide/wiki/SHORTUTORIAL%3A-JecsTools.CompAbilityUser
 
-    public class CompFirestarter : CompAbilityUser //GenericCompAbilityUser
+    public class CompFirestarter : GenericCompAbilityUser //GenericCompAbilityUser
     {
         public static FirestarterSettings settings;
+        public bool? firestarter;
 
+        // Provides ability without affecting save.a
         public override void CompTick()
         {
-            base.CompTick();
-            if (IsInitialized)
+            if (AbilityUser?.Spawned == true)
             {
-                // any custom code
+                if (firestarter != null)
+                {
+                    if (firestarter == true)
+                    {
+                        base.CompTick();
+                    }
+                }
+                else
+                {
+                    firestarter = TryTransformPawn();
+                    Initialize();
+                }
             }
+
         }
 
         public override void PostInitialize()
         {
             base.PostInitialize();
-
-            // add Abilities
-            this.AddPawnAbility(FirestarterDefOf.Firestarter);
+            if (firestarter == true) this.AddPawnAbility(FirestarterDefOf.Firestarter);
         }
 
         public bool IsFirestarter

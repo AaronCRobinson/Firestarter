@@ -1,8 +1,4 @@
-﻿using RimWorld;
-using System.Collections.Generic;
-using System.Linq;
-using Verse;
-using Harmony;
+﻿using Verse;
 using UnityEngine;
 
 namespace Firestarter
@@ -11,12 +7,14 @@ namespace Firestarter
     {
         public bool enableFirestarterAbility = true;
         public bool onlyPyro = false;
+        public bool enableResearch = true;
 
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Values.Look(ref this.enableFirestarterAbility, "enableFirestarterAbility", true);
             Scribe_Values.Look(ref this.onlyPyro, "onlyPyro", false);
+            Scribe_Values.Look(ref this.enableResearch, "enableResearch", true);
         }
     }
 
@@ -38,13 +36,18 @@ namespace Firestarter
             // reference: https://github.com/erdelf/PrisonerRansom/
             float num = 30f;
 
-            Widgets.Label(new Rect(0f, num + 5, inRect.width - 16f, 40f), "Enable `Firestarter` ability: ");
+            Widgets.Label(new Rect(0f, num + 5, inRect.width - 16f, 40f), "Enable Firestarter ability: ");
             Widgets.Checkbox(inRect.width - 64f, num + 6f, ref this.settings.enableFirestarterAbility);
 
             num += 25;
 
-            Widgets.Label(new Rect(0f, num + 5, inRect.width - 16f, 40f), "Only pyromaniac has `Firestarter` ability: ");
+            Widgets.Label(new Rect(0f, num + 5, inRect.width - 16f, 40f), "Only pyromaniac has Firestarter ability: ");
             Widgets.Checkbox(inRect.width - 64f, num + 6f, ref this.settings.onlyPyro);
+
+            num += 25;
+
+            Widgets.Label(new Rect(0f, num + 5, inRect.width - 16f, 40f), "Enable research requirement for Greek Fire: ");
+            Widgets.Checkbox(inRect.width - 64f, num + 6f, ref this.settings.enableResearch);
 
             this.settings.Write();
         }

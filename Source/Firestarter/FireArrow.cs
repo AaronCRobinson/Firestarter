@@ -51,24 +51,31 @@ namespace Firestarter
     {
         public static Projectile CreateProjectile(ThingDef projectileDef, IntVec3 source, Map map)
         {
-            bool fireArrow = source.GetThingList(map).Any(t => t.def == ThingDefOf.TorchLamp || t.def == ThingDefOf.Campfire);
-
-            if (!fireArrow)
-            {
-                // check adjacent
-                for (int i = 0; i < 8; i++)
-                {
-                    IntVec3 c2 = source + GenAdj.AdjacentCells[i];
-                    fireArrow = c2.GetThingList(map).Any(t => t.def == ThingDefOf.TorchLamp || t.def == ThingDefOf.Campfire);
-                    if (fireArrow) break;
-                }
-            }
-
             Thing projectile;
-            if (!fireArrow)
+
+            if (projectileDef.projectile.damageDef == DamageDefOf.Arrow)
+            {
+                bool fireArrow = source.GetThingList(map).Any(t => t.def == ThingDefOf.TorchLamp || t.def == ThingDefOf.Campfire);
+                if (!fireArrow)
+                {
+                    // check adjacent
+                    for (int i = 0; i < 8; i++)
+                    {
+                        IntVec3 c2 = source + GenAdj.AdjacentCells[i];
+                        fireArrow = c2.GetThingList(map).Any(t => t.def == ThingDefOf.TorchLamp || t.def == ThingDefOf.Campfire);
+                        if (fireArrow) break;
+                    }
+                }
+
+                if (!fireArrow)
+                    projectile = (Thing)Activator.CreateInstance(projectileDef.thingClass);
+                else
+                    projectile = (Thing)Activator.CreateInstance(typeof(Projectile_FireArrow));
+            }
+            else // not an arrow
+            { 
                 projectile = (Thing)Activator.CreateInstance(projectileDef.thingClass);
-            else
-                projectile = (Thing)Activator.CreateInstance(typeof(Projectile_FireArrow));
+            }
 
             projectile.def = projectileDef;
             projectile.PostMake();
@@ -77,9 +84,11 @@ namespace Firestarter
     }
 
     // NOTE: almost the same as FirestarterSpark => look into asbtraction or something
+    [StaticConstructorOnStartup]
     public class Projectile_FireArrow : Projectile
     {
         private const float defaultFireSize = 0.5f;
+        private static Graphic graphicInt;
 
         protected override void Impact(Thing hitThing)
         {
@@ -96,6 +105,30 @@ namespace Firestarter
                 GenSpawn.Spawn(fire, DestinationCell, Find.VisibleMap, Rot4.North, false);
             }
         }
+
+        public new Graphic Graphic
+        {
+            get
+            {
+                if (graphicInt == null)
+                {
+                    Log.Message("graphicInt");
+                    GraphicData graphicData = new GraphicData();
+                    graphicData.texPath = "Projectile/Xenarrow";
+                    graphicData.graphicClass = typeof(Graphic_Single);
+                    graphicData.shaderType = ShaderType.TransparentPostLight;
+                    graphicInt = graphicData.Graphic;
+                }
+                return graphicInt;
+            }
+        }
+
+        public override void Draw()
+        {
+            Graphics.DrawMesh(MeshPool.plane10, this.DrawPos, this.ExactRotation, this.Graphic.MatSingle, 0);
+            base.Comps_PostDraw();
+        }
+
     }
 
 }
