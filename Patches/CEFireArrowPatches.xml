@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+  		<success>Always</success>
+	  	<operations>
+	  		<li Class="PatchOperationSequence">
+	  			<success>Always</success>
+		      	<operations>
+  			    	<li Class="PatchOperationTest">
+				      	<xpath>*/ThingDef[starts-with(defName, "Arrow")]/comps</xpath>
+				      	<success>Invert</success>
+			    	</li>
+			    	<li Class="PatchOperationAdd">
+			      	<xpath>*/ThingDef[starts-with(defName, "Arrow")]</xpath>
+			      	<value>
+			        	<comps />
+			      	</value>
+			    	</li>
+		      	</operations>
+	    	</li>
+	    	<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[starts-with(defName, "Arrow")]/comps</xpath>
+				<value>
+					<li Class="Firestarter.CompProperties_FireArrow"/>
+			    </value>
+	    	</li>
+	  	</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationSequence">
+  		<success>Always</success>
+	  	<operations>
+	  		<li Class="PatchOperationSequence">
+	  			<success>Always</success>
+		      	<operations>
+  			    	<li Class="PatchOperationTest">
+				      	<xpath>*/ThingDef[starts-with(defName, "Projectile_Arrow")]/comps</xpath>
+				      	<success>Invert</success>
+			    	</li>
+			    	<li Class="PatchOperationAdd">
+			      	<xpath>*/ThingDef[starts-with(defName, "Projectile_Arrow")]</xpath>
+			      	<value>
+			        	<comps />
+			      	</value>
+			    	</li>
+		      	</operations>
+	    	</li>
+	    	<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef[starts-with(defName, "Projectile_Arrow")]/comps</xpath>
+				<value>
+					<li Class="Firestarter.CompProperties_FireArrow"/>
+			    </value>
+	    	</li>
+	  	</operations>
+	</Operation>
+
+</Patch>

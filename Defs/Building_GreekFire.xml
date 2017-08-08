@@ -26,9 +26,6 @@
     </building>
     <description>A greasey and highly flammable oil.</description>
     <placingDraggableDimensions>2</placingDraggableDimensions>
-    <recipeMaker>
-      <researchPrerequisite>GreekFireProduction</researchPrerequisite>
-    </recipeMaker>
     <costList>
       <Chemfuel>1</Chemfuel>
     </costList>
@@ -37,6 +34,9 @@
     <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
     <designationCategory>Security</designationCategory>
     <constructEffect>ConstructLiquid</constructEffect>
+    <researchPrerequisites>
+      <li>GreekFireProduction</li>
+    </researchPrerequisites>
   </ThingDef>
 
 </ThingDefs>

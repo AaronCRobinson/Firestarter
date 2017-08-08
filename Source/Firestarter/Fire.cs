@@ -1,41 +1,37 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using UnityEngine;
 using Harmony;
 using System.Reflection.Emit;
+using System.Reflection;
 
 namespace Firestarter
 {
     [StaticConstructorOnStartup]
-    class FirePatches
+    internal class FirePatches
     {
+        public static MethodInfo MI_HighPerformanceFireTick = AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), nameof(NoFirewatcher.HighPerformanceFire.Tick));
+
         static FirePatches()
         {
-            //HarmonyInstance.DEBUG = true;
             HarmonyInstance harmony = HarmonyInstance.Create("rimworld.whyisthat.firestarter.fire");
 
             harmony.Patch(AccessTools.Method(typeof(FireUtility), nameof(FireUtility.ChanceToStartFireIn)), null, null, new HarmonyMethod(typeof(Patches), nameof(ChanceToStartFireIn_UseFlammabilityMax)));
+        }
+
+        public static void DoDefaultFirePatches(HarmonyInstance harmony)
+        {
             harmony.Patch(AccessTools.Method(typeof(Fire), "DoComplexCalcs"), null, null, new HarmonyMethod(typeof(Patches), nameof(FireSizeTranspiler)));
             harmony.Patch(AccessTools.Property(typeof(Fire), "SpreadInterval").GetGetMethod(true), null, null, new HarmonyMethod(typeof(Patches), nameof(FixFireSpreadIntervalTranspiler)));
+        }
 
-            #region noFirewatcher
-            try
-            {
-                ((Action)(() =>
-                {
-                    if (AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), nameof(NoFirewatcher.HighPerformanceFire.Tick)) != null)
-                    {
-                        harmony.Patch(AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), "DoFireGrowthCalcs"), null, null, new HarmonyMethod(typeof(Patches), nameof(FireSizeTranspiler)));
-                        // NOTE: the values were moved to be inline... maybe reconsider this.
-                        harmony.Patch(AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), "Tick"), null, null, new HarmonyMethod(typeof(Patches), nameof(FixFireSpreadIntervalTranspiler)));
-                    }
-                }))();
-            }
-            catch (TypeLoadException) { }
-            #endregion
+
+        public static void DoCustomFirePatches(HarmonyInstance harmony)
+        {
+            harmony.Patch(AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), "DoFireGrowthCalcs"), null, null, new HarmonyMethod(typeof(Patches), nameof(FireSizeTranspiler)));
+            harmony.Patch(MI_HighPerformanceFireTick, null, null, new HarmonyMethod(typeof(Patches), nameof(FixFireSpreadIntervalTranspiler)));
         }
 
         // NOTE: Look into the impact of this change...
@@ -111,7 +107,6 @@ namespace Firestarter
         public static float ChanceUsingFlammabilityMax(IntVec3 c, Map map, ref float flammabilityMax)
         {
             List<Thing> thingList = c.GetThingList(map);
-            //Log.ErrorOnce("UseFlammabilityMaxChance fired. bang bang bang", 123357);
             for (int i = 0; i < thingList.Count; i++)
             {
                 if (thingList[i] is Fire)

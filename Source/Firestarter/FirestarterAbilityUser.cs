@@ -17,7 +17,6 @@ namespace Firestarter
 
     public class CompFirestarter : GenericCompAbilityUser //GenericCompAbilityUser
     {
-        public static FirestarterSettings settings;
         public bool? firestarter;
 
         // Provides ability without affecting save.a
@@ -55,7 +54,7 @@ namespace Firestarter
                 if (this.AbilityUser != null)
                 {
                     val = !this.AbilityUser.story.WorkTagIsDisabled(WorkTags.Violent);
-                    if (settings.onlyPyro) val &= this.AbilityUser.story.traits.HasTrait(TraitDefOf.Pyromaniac);
+                    if (FirestarterMod.settings.onlyPyro) val &= this.AbilityUser.story.traits.HasTrait(TraitDefOf.Pyromaniac);
                 }
                 return val;
             }
@@ -63,7 +62,7 @@ namespace Firestarter
 
         public override bool TryTransformPawn()
         {
-            if (!settings.enableFirestarterAbility) return false;
+            if (!FirestarterMod.settings.enableFirestarterAbility) return false;
             return IsFirestarter;
         }
 
@@ -94,22 +93,10 @@ namespace Firestarter
 
     public class FirestarterSpark : Projectile_AbilityBase
     {
-        private const float defaultFireSize = 0.5f;
-
         protected override void Impact(Thing hitThing)
         {
             base.Impact(hitThing);
-            Fire fire = (Fire)ThingMaker.MakeThing(ThingDefOf.Fire, null);
-            fire.fireSize = defaultFireSize;
-            if (hitThing != null)
-            {
-                if (hitThing is Pawn) hitThing.TryAttachFire(defaultFireSize);
-                else GenSpawn.Spawn(fire, hitThing.Position, Find.VisibleMap, Rot4.North, false);
-            }
-            else
-            {
-                GenSpawn.Spawn(fire, DestinationCell, Find.VisibleMap, Rot4.North, false);
-            }
+            FirestarterUtility.StartFire(hitThing, DestinationCell);
         }
     }
 

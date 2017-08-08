@@ -31,10 +31,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="%24HugsLibChecker, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\$HugsLibChecker.dll</HintPath>
+    </Reference>
     <Reference Include="0Harmony">
       <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\SeasonalWeather\Assemblies\0Harmony.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AbilityUser">
       <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\294100\932008009\Assemblies\AbilityUser.dll</HintPath>
@@ -42,6 +49,14 @@
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CombatExtended">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\294100\960196012\Assemblies\CombatExtended.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HugsLib">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\294100\818773962\Assemblies\HugsLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="NoFirewatcher">
@@ -60,18 +75,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompFireArrow.cs" />
     <Compile Include="Fire.cs" />
     <Compile Include="FireArrow.cs" />
     <Compile Include="FirestarterAbilityUser.cs" />
+    <Compile Include="DynamicResearchHelper.cs" />
+    <Compile Include="FirestarterUtility.cs" />
+    <Compile Include="ModBase.cs" />
     <Compile Include="ModSettings.cs" />
+    <Compile Include="ModWindowHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y $(TargetDir)* "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Assemblies"
-xcopy /E /Y $(SolutionDir)..\Defs\* "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Defs"
-xcopy /E /Y $(SolutionDir)..\About\* "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\About"
-xcopy /E /Y $(SolutionDir)..\Textures\* "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Textures"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(TargetDir)*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Assemblies\"
+xcopy /S /Y "$(SolutionDir)..\Defs\*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Defs\"
+xcopy /S /Y "$(SolutionDir)..\About\*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\About\"
+xcopy /S /Y "$(SolutionDir)..\Textures\*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Textures\"
+xcopy /Y "$(SolutionDir)..\Patches\*" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Patches\"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>del /S /Q "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\$(ProjectName)\Defs\*"</PreBuildEvent>
