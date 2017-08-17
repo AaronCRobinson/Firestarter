@@ -30,24 +30,33 @@ namespace Firestarter
 
         #region DynamicPatches
 
+
+        // thanks erdelf
         private void TryDoCustomFirePatches(HarmonyInstance harmony)
         {
-            if (FirePatches.MI_HighPerformanceFireTick != null)
+            ((Action)(() =>
             {
-                Log.Message("Firestarter: NoFirewatcher detected.");
-                FirePatches.DoCustomFirePatches(harmony);
-            }
+                if (FirePatches.MI_HighPerformanceFireTick != null)
+                {
+                    Log.Message("Firestarter: NoFirewatcher detected.");
+                    FirePatches.DoCustomFirePatches(harmony);
+                }
+            }))();
         }
 
         private void TryDoCustomFireArrowPatches(HarmonyInstance harmony)
         {
-            MethodInfo MI_launchProjectileCE = AccessTools.Method(typeof(Verb_LaunchProjectileCE), "TryCastShot");
-
-            if (MI_launchProjectileCE != null)
+            ((Action)(() =>
             {
-                Log.Message("Firestarter: Combat Extended detected.");
-                FireArrowPatches.DoCEFireArrowPatches(harmony);
-            }
+
+                MethodInfo MI_launchProjectileCE = AccessTools.Method(typeof(Verb_LaunchProjectileCE), "TryCastShot");
+
+                if (MI_launchProjectileCE != null)
+                {
+                    Log.Message("Firestarter: Combat Extended detected.");
+                    FireArrowPatches.DoCEFireArrowPatches(harmony);
+                }
+            }))();
         }
 
         #endregion

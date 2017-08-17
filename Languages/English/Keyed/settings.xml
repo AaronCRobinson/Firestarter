@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <FirestarterSettingsCategoryLabel>Firestarter</FirestarterSettingsCategoryLabel>
+  <EnableFirestarterAbilityLabel>Enable Firestarter ability</EnableFirestarterAbilityLabel>
+  <OnlyPyroLabel>Only pyromaniac has Firestarter ability</OnlyPyroLabel>
+  <EnableResearch>Enable research requirement for Greek Fire</EnableResearch>
+
+</LanguageData>

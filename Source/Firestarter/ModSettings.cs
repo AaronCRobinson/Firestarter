@@ -27,14 +27,14 @@ namespace Firestarter
             settings = GetSettings<FirestarterSettings>();
         }
 
-        public override string SettingsCategory() => "Firestarter";
+        public override string SettingsCategory() => "FirestarterSettingsCategoryLabel".Translate();
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
             ModWindowHelper.Reset();
-            ModWindowHelper.MakeLabeledCheckbox(inRect, "Enable Firestarter ability: ", ref settings.enableFirestarterAbility);
-            ModWindowHelper.MakeLabeledCheckbox(inRect, "Only pyromaniac has Firestarter ability: ", ref settings.onlyPyro);
-            ModWindowHelper.MakeLabeledCheckbox(inRect, "Enable research requirement for Greek Fire: ", ref settings.enableResearch);
+            ModWindowHelper.MakeLabeledCheckbox(inRect, "EnableFirestarterAbilityLabel".Translate() + ": ", ref settings.enableFirestarterAbility);
+            ModWindowHelper.MakeLabeledCheckbox(inRect, "OnlyPyroLabel".Translate() + ": ", ref settings.onlyPyro);
+            ModWindowHelper.MakeLabeledCheckbox(inRect, "EnableResearch".Translate() + ": ", ref settings.enableResearch);
             settings.Write();
         }
     }
