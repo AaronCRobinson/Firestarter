@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <FirestarterSettingsCategoryLabel>Kibritler - Ateş Yakma</FirestarterSettingsCategoryLabel>
+  <EnableFirestarterAbilityLabel>Ateş Yakma becerisine izin ver</EnableFirestarterAbilityLabel>
+  <OnlyPyroLabel>Sadece Piromani'ler ateş yakabilir</OnlyPyroLabel>
+  <EnableResearch>Rum Ateşi için araştırma gerektir</EnableResearch>
+
+</LanguageData>
