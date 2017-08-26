@@ -12,8 +12,6 @@ namespace Firestarter
     [StaticConstructorOnStartup]
     internal class FirePatches
     {
-        public static MethodInfo MI_HighPerformanceFireTick = AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), nameof(NoFirewatcher.HighPerformanceFire.Tick));
-
         static FirePatches()
         {
             HarmonyInstance harmony = HarmonyInstance.Create("rimworld.whyisthat.firestarter.fire");
@@ -31,7 +29,7 @@ namespace Firestarter
         public static void DoCustomFirePatches(HarmonyInstance harmony)
         {
             harmony.Patch(AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), "DoFireGrowthCalcs"), null, null, new HarmonyMethod(typeof(Patches), nameof(FireSizeTranspiler)));
-            harmony.Patch(MI_HighPerformanceFireTick, null, null, new HarmonyMethod(typeof(Patches), nameof(FixFireSpreadIntervalTranspiler)));
+            harmony.Patch(AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), nameof(NoFirewatcher.HighPerformanceFire.Tick)), null, null, new HarmonyMethod(typeof(Patches), nameof(FixFireSpreadIntervalTranspiler)));
         }
 
         // NOTE: Look into the impact of this change...

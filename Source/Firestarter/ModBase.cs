@@ -36,7 +36,8 @@ namespace Firestarter
         {
             ((Action)(() =>
             {
-                if (FirePatches.MI_HighPerformanceFireTick != null)
+                // NOTE: maybe use a getter here?
+                if (AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), nameof(NoFirewatcher.HighPerformanceFire.Tick)) != null)
                 {
                     Log.Message("Firestarter: NoFirewatcher detected.");
                     FirePatches.DoCustomFirePatches(harmony);
