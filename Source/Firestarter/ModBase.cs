@@ -1,15 +1,17 @@
-﻿using CombatExtended;
-using Harmony;
-using HugsLib;
-using System;
-using System.Reflection;
+﻿using System.Linq;
 using UnityEngine.SceneManagement;
 using Verse;
+using Harmony;
+using HugsLib;
 
 namespace Firestarter
 {
+    // NOTE: consider removing need for HugsLib...
     public class FirestarterModBase : ModBase
     {
+        private const string noFirewatcher_ModName = "No Firewatcher";
+        private const string combatExtended_ModName = "Combat Extended";
+
         public override string ModIdentifier
         {
             get { return "Firestarter"; }
@@ -17,50 +19,26 @@ namespace Firestarter
 
         public override void DefsLoaded()
         {
+            // NOTE: if this list of dynamic patches gets any longer look at doing this smarter...
             HarmonyInstance harmony = HarmonyInstance.Create("rimworld.whyisthat.firestarter.defsloaded");
 
-            // trying NoFirewatcher (if/else)
-            try { TryDoCustomFirePatches(harmony); }
-            catch (TypeLoadException) { FirePatches.DoDefaultFirePatches(harmony); }
-
-            // trying Combat Extended (if/else)
-            try { TryDoCustomFireArrowPatches(harmony); }
-            catch (TypeLoadException) { FireArrowPatches.DoFireArrowPatches(harmony); }
-        }
-
-        #region DynamicPatches
-
-
-        // thanks erdelf
-        private void TryDoCustomFirePatches(HarmonyInstance harmony)
-        {
-            ((Action)(() =>
+            if (ModLister.AllInstalledMods.FirstOrDefault(m => m.Name == noFirewatcher_ModName)?.Active == true)
             {
-                // NOTE: maybe use a getter here?
-                if (AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), nameof(NoFirewatcher.HighPerformanceFire.Tick)) != null)
-                {
-                    Log.Message("Firestarter: NoFirewatcher detected.");
-                    FirePatches.DoCustomFirePatches(harmony);
-                }
-            }))();
-        }
+                Log.Message("Firestarter: NoFirewatcher detected.");
+                FirePatches.DoCustomFirePatches(harmony);
+            }
+            else
+                FirePatches.DoDefaultFirePatches(harmony);
 
-        private void TryDoCustomFireArrowPatches(HarmonyInstance harmony)
-        {
-            ((Action)(() =>
+            if (ModLister.AllInstalledMods.FirstOrDefault(m => m.Name == combatExtended_ModName)?.Active == true)
             {
+                Log.Message("Firestarter: Combat Extended detected.");
+                FireArrowPatches.DoCEFireArrowPatches(harmony);
+            }
+            else
+                FireArrowPatches.DoFireArrowPatches(harmony);
 
-                MethodInfo MI_launchProjectileCE = AccessTools.Method(typeof(Verb_LaunchProjectileCE), "TryCastShot");
-
-                if (MI_launchProjectileCE != null)
-                {
-                    Log.Message("Firestarter: Combat Extended detected.");
-                    FireArrowPatches.DoCEFireArrowPatches(harmony);
-                }
-            }))();
         }
-
-        #endregion
 
         public override void SceneLoaded(Scene scene)
         {

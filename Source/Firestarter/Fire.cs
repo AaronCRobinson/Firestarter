@@ -25,7 +25,6 @@ namespace Firestarter
             harmony.Patch(AccessTools.Property(typeof(Fire), "SpreadInterval").GetGetMethod(true), null, null, new HarmonyMethod(typeof(Patches), nameof(FixFireSpreadIntervalTranspiler)));
         }
 
-
         public static void DoCustomFirePatches(HarmonyInstance harmony)
         {
             harmony.Patch(AccessTools.Method(typeof(NoFirewatcher.HighPerformanceFire), "DoFireGrowthCalcs"), null, null, new HarmonyMethod(typeof(Patches), nameof(FireSizeTranspiler)));

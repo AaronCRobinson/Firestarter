@@ -11,8 +11,6 @@ namespace Firestarter
 
         public static void StartFire(Thing hitThing, IntVec3 destinationCell)
         {
-            Log.Message(destinationCell.ToString());
-
             Fire fire = (Fire)ThingMaker.MakeThing(ThingDefOf.Fire, null);
             fire.fireSize = defaultFireSize;
             if (hitThing != null)
