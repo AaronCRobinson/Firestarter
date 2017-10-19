@@ -10,8 +10,8 @@ I'm a firestarter, twisted firestarter. You're a firestarter, twisted firestarte
 - Arrows shot beside campfires or torches will become flaming and start fires where they land.
 
 ## Requirements
-[JecsTools](https://github.com/jecrell/JecsTools)
-[HubsLib](https://github.com/UnlimitedHugs/RimworldHugsLib)
+- [JecsTools](https://github.com/jecrell/JecsTools)
+- [HubsLib](https://github.com/UnlimitedHugs/RimworldHugsLib)
 
 ## Translations
 Turkish - Slevilex
