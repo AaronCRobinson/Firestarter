@@ -27,9 +27,7 @@ namespace Firestarter
         public static void ImpactPrefix(Projectile __instance, Thing hitThing)
         {
             if (__instance.GetComp<CompFireArrow>()?.FireArrow == true)
-            {
                 FirestarterUtility.StartFire(hitThing, __instance.Position);
-            }
         }
 
     }

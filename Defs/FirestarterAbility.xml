@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ThingDefs>
+<Defs>
 
     <ThingDef Class="AbilityUser.ProjectileDef_AbilityLaser">
         <defName>FirestarterSpark</defName>
@@ -21,21 +21,7 @@
         </projectile>
     </ThingDef>
 
-    <ThingDef Name="BaseAbility" Abstract="True" Class="AbilityUser.AbilityDef">
-        <category>None</category>
-        <thingClass>ThingWithComps</thingClass>
-        <pathCost>0</pathCost>
-        <useHitPoints>false</useHitPoints>
-        <selectable>false</selectable>
-        <tickerType>Normal</tickerType>
-        <comps>
-        <li>
-            <compClass>CompEquippable</compClass>
-        </li>
-        </comps>
-    </ThingDef>
-
-    <ThingDef ParentName="BaseAbility" Class="AbilityUser.AbilityDef">
+    <AbilityUser.AbilityDef>
         <defName>Firestarter</defName>
         <label>firestarter</label>
         <uiIconPath>UI/Fire</uiIconPath>
@@ -61,7 +47,8 @@
                 <canTargetLocations>true</canTargetLocations>
                 <mustBeSelectable>false</mustBeSelectable>
                 <canTargetSelf>false</canTargetSelf>
-            </targetParams>     
+            </targetParams>
         </MainVerb>
-    </ThingDef>
-</ThingDefs>
+    </AbilityUser.AbilityDef>
+
+</Defs>

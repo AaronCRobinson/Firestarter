@@ -19,10 +19,7 @@ namespace Firestarter
             }
         }
 
-        public bool FireArrow
-        {
-            get { return fireArrow; }
-        }
+        public bool FireArrow { get => fireArrow; }
 
         public bool SetFireArrow(IntVec3 source, Map map)
         {
@@ -53,7 +50,8 @@ namespace Firestarter
 
         public override void PostDraw()
         {
-            Graphics.DrawMesh(MeshPool.plane10, this.parent.DrawPos, TraverseParent.Property("ExactRotation").GetValue<Quaternion>(), FirestarterUtility.XenarrowGraphic.MatSingle, 0);
+            if (this.fireArrow)
+                Graphics.DrawMesh(MeshPool.plane10, this.parent.DrawPos, TraverseParent.Property("ExactRotation").GetValue<Quaternion>(), FirestarterUtility.XenarrowGraphic.MatSingle, 0);
         }
 
     }

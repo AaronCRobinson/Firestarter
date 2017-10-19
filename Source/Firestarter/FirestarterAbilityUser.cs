@@ -76,10 +76,8 @@ namespace Firestarter
                     Gizmo current = enumerator.Current;
                     yield return current;
                 }
-                foreach (Command_Target comm in GetPawnAbilityVerbs().ToList())
-                {
-                    yield return comm;
-                }
+                for (int i = 0; i < this.AllPowers.Count; i++)
+                    yield return this.AllPowers[i].GetGizmo();
             }
         }
 

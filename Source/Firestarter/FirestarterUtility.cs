@@ -24,22 +24,6 @@ namespace Firestarter
             }
         }
 
-        public static bool CheckAdjacentFireDevice(IntVec3 source, Map map)
-        {
-            bool fireArrow = source.GetThingList(map).Any(t => t.def == ThingDefOf.TorchLamp || t.def == ThingDefOf.Campfire);
-            if (!fireArrow)
-            {
-                for (int i = 0; i < 8; i++)
-                {
-                    IntVec3 c2 = source + GenAdj.AdjacentCells[i];
-                    if (!c2.InBounds(map)) continue;
-                    fireArrow = c2.GetThingList(map).Any(t => t.def == ThingDefOf.TorchLamp || t.def == ThingDefOf.Campfire);
-                    if (fireArrow) break;
-                }
-            }
-            return fireArrow;
-        }
-
         public static Graphic XenarrowGraphic
         {
             get
