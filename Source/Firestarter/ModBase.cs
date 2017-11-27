@@ -22,13 +22,7 @@ namespace Firestarter
             // NOTE: if this list of dynamic patches gets any longer look at doing this smarter...
             HarmonyInstance harmony = HarmonyInstance.Create("rimworld.whyisthat.firestarter.defsloaded");
 
-            if (ModLister.AllInstalledMods.FirstOrDefault(m => m.Name == noFirewatcher_ModName)?.Active == true)
-            {
-                Log.Message("Firestarter: NoFirewatcher detected.");
-                FirePatches.DoCustomFirePatches(harmony);
-            }
-            else
-                FirePatches.DoDefaultFirePatches(harmony);
+            FirePatches.DoDefaultFirePatches(harmony);
 
             if (ModLister.AllInstalledMods.FirstOrDefault(m => m.Name == combatExtended_ModName)?.Active == true)
             {

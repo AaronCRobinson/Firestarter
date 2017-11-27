@@ -1,54 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-    <ThingDef Class="AbilityUser.ProjectileDef_AbilityLaser">
-        <defName>FirestarterSpark</defName>
-        <category>Projectile</category>
-        <label>firstarter spark</label>
-        <thingClass>Firestarter.FirestarterSpark</thingClass>
-        <graphicData>
-            <texPath>Projectile/Spark</texPath>
-            <graphicClass>Graphic_Single</graphicClass>
-            <shaderType>Transparent</shaderType>
-        </graphicData>
-        <tickerType>Normal</tickerType>
-        <altitudeLayer>Projectile</altitudeLayer>
-        <useHitPoints>False</useHitPoints>
-        <neverMultiSelect>True</neverMultiSelect>
-        <projectile>
-            <!--<alwaysFreeIntercept>true</alwaysFreeIntercept>-->
-            <speed>20</speed>
-        </projectile>
-    </ThingDef>
+  <ThingDef Class="AbilityUser.ProjectileDef_AbilityLaser">
+    <defName>FirestarterSpark</defName>
+    <category>Projectile</category>
+    <label>firstarter spark</label>
+    <thingClass>Firestarter.FirestarterSpark</thingClass>
+    <graphicData>
+      <texPath>Projectile/Spark</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>Transparent</shaderType>
+    </graphicData>
+    <tickerType>Normal</tickerType>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <useHitPoints>False</useHitPoints>
+    <neverMultiSelect>True</neverMultiSelect>
+    <projectile>
+      <!--<alwaysFreeIntercept>true</alwaysFreeIntercept>-->
+      <speed>20</speed>
+    </projectile>
+  </ThingDef>
 
-    <AbilityUser.AbilityDef>
-        <defName>Firestarter</defName>
-        <label>firestarter</label>
-        <uiIconPath>UI/Fire</uiIconPath>
-        <description>I'm a firestarter, twisted firestarter</description>
-        <MainVerb Class="AbilityUser.VerbProperties_Ability">
-            <verbClass>AbilityUser.Verb_UseAbility</verbClass>
-            <tooltipShowProjectileDamage>false</tooltipShowProjectileDamage>
-            <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
-            <hasStandardCommand>true</hasStandardCommand>
-            <projectileDef>FirestarterSpark</projectileDef>
-            <abilityDef>Firestarter</abilityDef>
-            <SecondsToRecharge>10.0</SecondsToRecharge>
-            <range>2</range>
-            <burstShotCount>1</burstShotCount>
-            <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
-            <muzzleFlashScale>20</muzzleFlashScale>
-            <isPrimary>false</isPrimary>
-            <AbilityTargetCategory>TargetLocation</AbilityTargetCategory>
-            <targetParams>
-                <canTargetPawns>true</canTargetPawns>
-                <canTargetBuildings>true</canTargetBuildings>
-                <canTargetItems>true</canTargetItems>
-                <canTargetLocations>true</canTargetLocations>
-                <mustBeSelectable>false</mustBeSelectable>
-                <canTargetSelf>false</canTargetSelf>
-            </targetParams>
-        </MainVerb>
-    </AbilityUser.AbilityDef>
+  <AbilityUser.AbilityDef>
+    <defName>Firestarter</defName>
+    <label>firestarter</label>
+    <uiIconPath>UI/Fire</uiIconPath>
+    <description>I'm a firestarter, twisted firestarter</description>
+    <MainVerb Class="AbilityUser.VerbProperties_Ability">
+      <verbClass>AbilityUser.Verb_UseAbility</verbClass>
+      <tooltipShowProjectileDamage>false</tooltipShowProjectileDamage>
+      <tooltipShowExtraDamages>false</tooltipShowExtraDamages>
+      <hasStandardCommand>true</hasStandardCommand>
+      <defaultProjectile>FirestarterSpark</defaultProjectile>
+      <abilityDef>Firestarter</abilityDef>
+      <SecondsToRecharge>10.0</SecondsToRecharge>
+      <range>2</range>
+      <burstShotCount>1</burstShotCount>
+      <ticksBetweenBurstShots>2</ticksBetweenBurstShots>
+      <muzzleFlashScale>20</muzzleFlashScale>
+      <isPrimary>false</isPrimary>
+      <AbilityTargetCategory>TargetLocation</AbilityTargetCategory>
+      <targetParams>
+        <canTargetPawns>true</canTargetPawns>
+        <canTargetBuildings>true</canTargetBuildings>
+        <canTargetItems>true</canTargetItems>
+        <canTargetLocations>true</canTargetLocations>
+        <mustBeSelectable>false</mustBeSelectable>
+        <canTargetSelf>false</canTargetSelf>
+      </targetParams>
+    </MainVerb>
+  </AbilityUser.AbilityDef>
+
 
 </Defs>

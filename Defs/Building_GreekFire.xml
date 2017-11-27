@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ThingDefs>
+<Defs>
 
   <ThingDef>
     <defName>GreekFire</defName>
@@ -19,9 +19,9 @@
       <Flammability>5</Flammability>
     </statBases>
     <building>
-	  <!--ai_combatDangerous maybe...-->
-	  <isInert>true</isInert>
-	  <expandHomeArea>false</expandHomeArea>
+      <!--ai_combatDangerous maybe...-->
+      <isInert>true</isInert>
+      <expandHomeArea>false</expandHomeArea>
       <repairable>false</repairable>
     </building>
     <description>A greasey and highly flammable oil.</description>
@@ -39,4 +39,4 @@
     </researchPrerequisites>
   </ThingDef>
 
-</ThingDefs>
+</Defs>

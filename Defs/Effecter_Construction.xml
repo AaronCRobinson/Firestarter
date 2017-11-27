@@ -6,7 +6,7 @@
       <li>
         <subEffecterClass>SubEffecter_SprayerChance</subEffecterClass>
         <moteDef>Mote_WaterSplash</moteDef>
-        <ChancePerTick>0.035</ChancePerTick>
+        <chancePerTick>0.035</chancePerTick>
         <scale>
           <min>0.9</min>
           <max>1.2</max>

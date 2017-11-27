@@ -1,4 +1,4 @@
-# Firestarter [![RimWorld Alpha 17](https://img.shields.io/badge/RimWorld-Alpha%2017-brightgreen.svg)](http://rimworldgame.com/)
+# Firestarter [![RimWorld Beta 18](https://img.shields.io/badge/RimWorld-Beta%2018-brightgreen.svg)](http://rimworldgame.com/)
 
 I'm a firestarter, twisted firestarter. You're a firestarter, twisted firestarter.
 

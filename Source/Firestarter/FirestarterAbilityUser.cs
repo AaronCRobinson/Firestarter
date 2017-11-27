@@ -76,8 +76,8 @@ namespace Firestarter
                     Gizmo current = enumerator.Current;
                     yield return current;
                 }
-                for (int i = 0; i < this.AllPowers.Count; i++)
-                    yield return this.AllPowers[i].GetGizmo();
+                for (int i = 0; i < this.AbilityData.AllPowers.Count; i++)
+                    yield return this.AbilityData.AllPowers[i].GetGizmo();
             }
         }
 
