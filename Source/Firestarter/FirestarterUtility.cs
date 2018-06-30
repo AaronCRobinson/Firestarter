@@ -16,11 +16,11 @@ namespace Firestarter
             if (hitThing != null)
             {
                 if (hitThing is Pawn) hitThing.TryAttachFire(defaultFireSize);
-                else GenSpawn.Spawn(fire, hitThing.Position, Find.VisibleMap, Rot4.North, false);
+                else GenSpawn.Spawn(fire, hitThing.Position, Find.CurrentMap, Rot4.North);
             }
             else
             {
-                GenSpawn.Spawn(fire, destinationCell, Find.VisibleMap, Rot4.North, false);
+                GenSpawn.Spawn(fire, destinationCell, Find.CurrentMap, Rot4.North);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Firestarter
                     {
                         texPath = "Projectile/Xenarrow",
                         graphicClass = typeof(Graphic_Single),
-                        shaderType = ShaderType.TransparentPostLight
+                        shaderType = ShaderTypeDefOf.Transparent
                     };
                     graphicInt = graphicData.Graphic;
                 }

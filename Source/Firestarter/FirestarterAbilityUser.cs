@@ -27,9 +27,7 @@ namespace Firestarter
                 if (firestarter != null)
                 {
                     if (firestarter == true)
-                    {
                         base.CompTick();
-                    }
                 }
                 else
                 {
@@ -43,7 +41,7 @@ namespace Firestarter
         public override void PostInitialize()
         {
             base.PostInitialize();
-            if (firestarter == true) this.AddPawnAbility(FirestarterDefOf.Firestarter);
+            if (firestarter == true) this.AddPawnAbility(AbilityDefOf.Firestarter);
         }
 
         public bool IsFirestarter
@@ -84,7 +82,7 @@ namespace Firestarter
     }
 
     [DefOf]
-    public static class FirestarterDefOf
+    public static class AbilityDefOf
     {
         public static AbilityDef Firestarter;
     }

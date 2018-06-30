@@ -9,7 +9,7 @@ namespace Firestarter
 
         public static void DoFireArrowPatches(HarmonyInstance harmony)
         {
-            harmony.Patch(AccessTools.Method(typeof(Projectile), nameof(Projectile.Launch), new[] { typeof(Thing), typeof(Vector3), typeof(LocalTargetInfo), typeof(Thing), typeof(Thing)}), null, new HarmonyMethod(typeof(FireArrowPatches), nameof(CheckAndSetFireArrows)));
+            harmony.Patch(AccessTools.Method(typeof(Projectile), nameof(Projectile.Launch), new[] { typeof(Thing), typeof(Vector3), typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(ProjectileHitFlags), typeof(Thing), typeof(ThingDef)}), null, new HarmonyMethod(typeof(FireArrowPatches), nameof(CheckAndSetFireArrows)));
             harmony.Patch(AccessTools.Method(typeof(Projectile), "Impact"), new HarmonyMethod(typeof(FireArrowPatches), nameof(ImpactPrefix)), null);
         }
 

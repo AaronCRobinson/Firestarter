@@ -24,7 +24,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -35,10 +35,6 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="%24HugsLibChecker, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Assemblies\$HugsLibChecker.dll</HintPath>
-    </Reference>
     <Reference Include="0Harmony">
       <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\SeasonalWeather\Assemblies\0Harmony.dll</HintPath>
       <Private>True</Private>
@@ -53,10 +49,6 @@
     </Reference>
     <Reference Include="CombatExtended">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\294100\960196012\Assemblies\CombatExtended.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="HugsLib">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\294100\818773962\Assemblies\HugsLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -77,7 +69,8 @@
     <Compile Include="FirestarterAbilityUser.cs" />
     <Compile Include="DynamicResearchHelper.cs" />
     <Compile Include="FirestarterUtility.cs" />
-    <Compile Include="ModBase.cs" />
+    <Compile Include="GameComponent.cs" />
+    <Compile Include="HarmonyPatches.cs" />
     <Compile Include="ModSettings.cs" />
     <Compile Include="ModWindowHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
