@@ -6,7 +6,7 @@ using System.Reflection.Emit;
 using Verse;
 using Verse.Sound;
 using RimWorld;
-using Harmony;
+using HarmonyLib;
 
 namespace Firestarter
 {
@@ -21,14 +21,14 @@ namespace Firestarter
 #if DEBUG
             HarmonyInstance.DEBUG = true;
 #endif
-            HarmonyInstance harmony = HarmonyInstance.Create("rimworld.whyisthat.firestarter.main");
+            Harmony harmony = new Harmony("rimworld.whyisthat.firestarter.main");
 
             FirePatches.DoDefaultFirePatches(harmony);
 
             if (ModLister.AllInstalledMods.FirstOrDefault(m => m.Name == combatExtended_ModName)?.Active == true)
             {
                 Log.Message("Firestarter: Combat Extended detected.");
-                FireArrowPatches.DoCEFireArrowPatches(harmony);
+                //FireArrowPatches.DoCEFireArrowPatches(harmony);
             }
             else
                 FireArrowPatches.DoFireArrowPatches(harmony);

@@ -51,7 +51,7 @@ namespace Firestarter
                 bool val = false;
                 if (this.AbilityUser != null)
                 {
-                    val = !this.AbilityUser.story.WorkTagIsDisabled(WorkTags.Violent);
+                    val = !this.AbilityUser.story.DisabledWorkTagsBackstoryAndTraits.HasFlag(WorkTags.Violent);
                     if (FirestarterMod.settings.onlyPyro) val &= this.AbilityUser.story.traits.HasTrait(TraitDefOf.Pyromaniac);
                 }
                 return val;
@@ -84,7 +84,7 @@ namespace Firestarter
     [DefOf]
     public static class AbilityDefOf
     {
-        public static AbilityDef Firestarter;
+        public static AbilityUser.AbilityDef Firestarter;
     }
 
     public class FirestarterSpark : Projectile_AbilityBase

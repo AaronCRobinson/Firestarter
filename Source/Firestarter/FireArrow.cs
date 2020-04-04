@@ -1,23 +1,24 @@
 ﻿using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 
 namespace Firestarter
 {
     internal class FireArrowPatches
     {
 
-        public static void DoFireArrowPatches(HarmonyInstance harmony)
+        public static void DoFireArrowPatches(Harmony harmony)
         {
             harmony.Patch(AccessTools.Method(typeof(Projectile), nameof(Projectile.Launch), new[] { typeof(Thing), typeof(Vector3), typeof(LocalTargetInfo), typeof(LocalTargetInfo), typeof(ProjectileHitFlags), typeof(Thing), typeof(ThingDef)}), null, new HarmonyMethod(typeof(FireArrowPatches), nameof(CheckAndSetFireArrows)));
             harmony.Patch(AccessTools.Method(typeof(Projectile), "Impact"), new HarmonyMethod(typeof(FireArrowPatches), nameof(ImpactPrefix)), null);
         }
 
-        public static void DoCEFireArrowPatches(HarmonyInstance harmony)
+        // ignoring CombatExtended patching for now.
+        /*public static void DoCEFireArrowPatches(Harmony harmony)
         {
             harmony.Patch(AccessTools.Method(typeof(CombatExtended.ProjectileCE), nameof(CombatExtended.ProjectileCE.Launch), new[] { typeof(Thing), typeof(Vector2), typeof(float), typeof(float), typeof(float), typeof(float), typeof(Thing) }), null, new HarmonyMethod(typeof(FireArrowPatches), nameof(CheckAndSetFireArrows)));
             harmony.Patch(AccessTools.Method(typeof(CombatExtended.ProjectileCE), "Impact"), new HarmonyMethod(typeof(FireArrowPatches), nameof(ImpactPrefix)), null);
-        }
+        }*/
 
         public static void CheckAndSetFireArrows(Projectile __instance, Thing launcher)
         {

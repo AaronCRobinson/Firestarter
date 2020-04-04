@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 using System.Reflection.Emit;
-using System.Reflection;
 
 namespace Firestarter
 {
@@ -14,15 +13,16 @@ namespace Firestarter
     {
         static FirePatches()
         {
-            HarmonyInstance harmony = HarmonyInstance.Create("rimworld.whyisthat.firestarter.fire");
+            Harmony harmony = new Harmony("rimworld.whyisthat.firestarter.fire");
 
-            harmony.Patch(AccessTools.Method(typeof(FireUtility), nameof(FireUtility.ChanceToStartFireIn)), null, null, new HarmonyMethod(typeof(Patches), nameof(ChanceToStartFireIn_UseFlammabilityMax)));
+            // TODO: fix this patch... missing label after dropping a block of code.
+            //harmony.Patch(AccessTools.Method(typeof(FireUtility), nameof(FireUtility.ChanceToStartFireIn)), null, null, new HarmonyMethod(typeof(FirePatches), nameof(ChanceToStartFireIn_UseFlammabilityMax)));
         }
 
-        public static void DoDefaultFirePatches(HarmonyInstance harmony)
+        public static void DoDefaultFirePatches(Harmony harmony)
         {
-            harmony.Patch(AccessTools.Method(typeof(Fire), "DoComplexCalcs"), null, null, new HarmonyMethod(typeof(Patches), nameof(FireSizeTranspiler)));
-            harmony.Patch(AccessTools.Property(typeof(Fire), "SpreadInterval").GetGetMethod(true), null, null, new HarmonyMethod(typeof(Patches), nameof(FixFireSpreadIntervalTranspiler)));
+            harmony.Patch(AccessTools.Method(typeof(Fire), "DoComplexCalcs"), null, null, new HarmonyMethod(typeof(FirePatches), nameof(FireSizeTranspiler)));
+            harmony.Patch(AccessTools.Property(typeof(Fire), "SpreadInterval").GetGetMethod(true), null, null, new HarmonyMethod(typeof(FirePatches), nameof(FixFireSpreadIntervalTranspiler)));
         }
 
         // NOTE: Look into the impact of this change...
